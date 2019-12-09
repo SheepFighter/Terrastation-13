@@ -180,7 +180,7 @@
 //Icon smoothing helpers
 
 /proc/smooth_icon_neighbors(atom/A)
-	for(var/V in orange(1,A))
+	for(var/V in range(1,A))
 		var/atom/T = V
 		if(T.smooth)
 			smooth_icon(T)

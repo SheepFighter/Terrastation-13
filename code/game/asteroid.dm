@@ -4,6 +4,12 @@ var/global/max_secret_rooms = 6
 
 /proc/spawn_room(var/atom/start_loc, var/x_size, var/y_size, var/list/walltypes, var/floor, var/name)
 	var/list/room_turfs = list("walls"=list(),"floors"=list())
+	var/area/asteroid/artifactroom/A = new
+	if(name)
+		A.name = name
+	else
+		A.name = "Artifact Room #[start_loc.x]-[start_loc.y]-[start_loc.z]"
+
 
 	for(var/x = 0, x < x_size, x++)		//sets the size of the room on the x axis
 		for(var/y = 0, y < y_size, y++) //sets it on y axis.
@@ -11,12 +17,14 @@ var/global/max_secret_rooms = 6
 			var/cur_loc = locate(start_loc.x + x, start_loc.y + y, start_loc.z)
 
 
+/*
+nelsonmuntzHA.gif
 			var/area/asteroid/artifactroom/A = new
 			if(name)
 				A.name = name
 			else
 				A.name = "Artifact Room #[start_loc.x]-[start_loc.y]-[start_loc.z]"
-
+*/
 
 			if(x == 0 || x == x_size-1 || y == 0 || y == y_size-1)
 				var/wall = pickweight(walltypes)//totally-solid walls are pretty boring.
@@ -188,7 +196,7 @@ var/global/max_secret_rooms = 6
 
 	if(room)//time to fill it with stuff
 		var/list/emptyturfs = room["floors"]
-		for(var/turf/simulated/floor/A in emptyturfs) //remove pls doesn't fix problem
+		for(var/turf/simulated/floor/A in emptyturfs)
 			if(istype(A))
 				spawn(2)
 					A.fullUpdateMineralOverlays()

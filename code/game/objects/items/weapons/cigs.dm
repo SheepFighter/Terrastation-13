@@ -60,6 +60,15 @@ LIGHTERS ARE IN LIGHTERS.DM
 		return ..()
 
 
+/obj/item/clothing/mask/cigarette/equipped(mob/user, slot)
+	..()
+/*	if(lit)
+		user.add_special_emote(emote = emotes_by_type[/datum/emote/johnny])
+*/
+/obj/item/clothing/mask/cigarette/dropped(mob/user)
+//	user.remove_special_emote(trigger = "johnny")
+	return
+
 /obj/item/clothing/mask/cigarette/fire_act()
 	light()
 
@@ -155,6 +164,7 @@ LIGHTERS ARE IN LIGHTERS.DM
 			var/turf/T = get_turf(src)
 			T.visible_message(flavor_text)
 		set_light(2, 0.25, "#E38F46")
+//		user.add_special_emote(emote = emotes_by_type[/datum/emote/johnny])
 		processing_objects.Add(src)
 
 
@@ -343,6 +353,7 @@ LIGHTERS ARE IN LIGHTERS.DM
 			var/mob/living/M = loc
 			to_chat(M, "<span class='notice'>Your [name] goes out, and you empty the ash.</span>")
 			lit = 0
+//			M.remove_special_emote(trigger = "johnny")
 			icon_state = icon_off
 			item_state = icon_off
 			M.update_inv_wear_mask(0)
